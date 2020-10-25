@@ -1,0 +1,26 @@
+﻿@page "/timer"
+
+<h3>Dynamic Progress Bar</h3>
+@code {
+    TimeSpan stopWatchValue = new TimeSpan();
+    bool is_stopWatchRunning = false;
+
+    async Task StopWatch()
+    {
+        is_stopWatchRunning = true;
+        while (is_stopWatchRunning)
+        {
+            await Task.Delay(1000);
+            if (is_stopWatchRunning)
+            {
+                stopWatchValue = stopWatchValue.Add(new TimeSpan(0, 0, 1));
+                StateHasChanged();
+            }
+        }
+    }
+}
+
+<p> <button @onclick="@(async () => { await StopWatch(); })">Start</button></p>
+<p> <button @onclick="@(() => { is_stopWatchRunning = false; })">Pause</button></p>
+
+<p>@stopWatchValue</p>
