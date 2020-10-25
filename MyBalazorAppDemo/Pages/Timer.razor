@@ -18,9 +18,10 @@
             }
         }
     }
+
 }
 
-<p> <button @onclick="@(async () => { await StopWatch(); })">Start</button></p>
+<p> <button @onclick="@(async () => { StopWatch(); })">Start</button></p>
 <p> <button @onclick="@(() => { is_stopWatchRunning = false; })">Pause</button></p>
 
 <p>@stopWatchValue</p>
