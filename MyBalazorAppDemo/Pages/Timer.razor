@@ -2,6 +2,7 @@
 
 <h3>Dynamic Progress Bar</h3>
 @code {
+
     TimeSpan stopWatchValue = new TimeSpan();
     bool is_stopWatchRunning = false;
 
@@ -15,10 +16,9 @@
             {
                 stopWatchValue = stopWatchValue.Add(new TimeSpan(0, 0, 1));
                 StateHasChanged();
-            }
+            }            
         }
     }
-
 }
 
 <p> <button @onclick="@(async () => { StopWatch(); })">Start</button></p>
