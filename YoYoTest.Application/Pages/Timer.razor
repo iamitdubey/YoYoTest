@@ -1,0 +1,140 @@
+﻿@page "/timer"
+
+<h3 style="text-align:center;">YoYo Test</h3>
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        InitializeCandidates();
+        await service.GetData();
+
+        await base.OnInitializedAsync();
+    }
+
+    TimeSpan stopWatchValue = new TimeSpan();
+    TimeSpan nextShuttleValue = new TimeSpan();
+
+
+    bool is_stopWatchRunning = false;
+
+    async Task StopWatch()
+    {
+        is_stopWatchRunning = true;
+        await GetShuttlesFor(0, 1);
+        while (is_stopWatchRunning)
+        {
+            await Task.Delay(1000);
+            if (is_stopWatchRunning)
+            {
+                stopWatchValue = stopWatchValue.Add(new TimeSpan(0, 0, 1));
+                if (nextShuttleValue > new TimeSpan(0, 0, 0))
+                {
+                    nextShuttleValue = nextShuttleValue.Subtract(new TimeSpan(0, 0, 1));
+                }
+                if (nextShuttleValue == new TimeSpan(0, 0, 0))
+                {
+                    await GetShuttlesFor(NextLevel, NextShuttle);
+                }
+                StateHasChanged();
+            }
+        }
+    }
+}
+
+@if (!is_stopWatchRunning)
+{
+    <button style="text-align:center;border-radius: 50%;" value="S" @onclick="@(async () => { StopWatch(); })">S
+    <p style="text-align:center;">Level @CurrentLevel</p>
+    <p style="text-align:center;">Shuttle @Shuttle</p>
+    <p style="text-align:center;">Speed @Speed </p>
+    </button>
+}
+@if (is_stopWatchRunning)
+{
+    <button style="text-align:center;border-radius: 50%;" value="P" @onclick="@(() => { is_stopWatchRunning = false; })">
+    <p style="text-align:center;">Level @CurrentLevel</p>
+    <p style="text-align:center;">Shuttle @Shuttle</p>
+    <p style="text-align:center;">Speed @Speed </p>
+    </button>
+}
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <td>Next Shuttle: @nextShuttleValue.Minutes : @nextShuttleValue.Seconds s</td>
+            <td>Total Time: @stopWatchValue.Minutes : @stopWatchValue.Seconds m</td>
+            <td>Total Distance: @TotalDistance m</td>
+        </tr>
+    </thead>
+</table>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Candidate ID</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var candidate in Candidates)
+        {
+            <tr>
+                <td>@candidate.CandidateId</td>
+                <td>@candidate.FirstName</td>
+                <td>@candidate.LastName</td>
+                @if (!candidate.IsWarned && !candidate.IsStopped)
+                {
+                    <td>
+                        <a @onclick="() => TakeAction(true, candidate)" class="btn btn-primary table-btn">
+                            <i class="fas fa-info-circle"></i>Warn
+                        </a>
+                    </td>
+                    <td>
+                        <a @onclick="() => TakeAction(false, candidate)" class="btn btn-primary table-btn">
+                            <i class="fas fa-info-circle"></i>Stop
+                        </a>
+                    </td>
+                }
+                @if (candidate.IsWarned && !candidate.IsStopped)
+                {
+                    <td>
+                        <a class="btn btn-primary table-btn">
+                            <i class="fas fa-info-circle"></i>Warned
+                        </a>
+                    </td>
+                    <td>
+                        <a @onclick="() => TakeAction(false, candidate)" class="btn btn-primary table-btn">
+                            <i class="fas fa-info-circle"></i>Stop
+                        </a>
+                    </td>
+                }
+                @if (candidate.IsStopped)
+                {
+                    <td>
+                        <input type="text" class="form-control" placeholder="" value="@candidate.Result" />
+                    </td>
+                    @if (candidate.IsEditing)
+                    {
+                        <td>
+                            <button type="button" class="btn btn-link" @onclick="() => EnableEditing(false, candidate)">
+                            </button>
+                            <button type="button" class="btn btn-link" @onclick="() => UpdateInstance(candidate)">
+                            </button>
+                        </td>
+                    }
+                    @if (!candidate.IsEditing)
+                    {
+                        <td>
+                            <button type="button" class="btn btn-link" @onclick="() => EnableEditing(true, candidate)">
+                            </button>
+                        </td>
+                    }
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+

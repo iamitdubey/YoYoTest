@@ -3,13 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30320.27
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YoYoTest.UI", "MyBalazorAppDemo\YoYoTest.UI.csproj", "{93FA4F2D-0041-4EAC-9825-7D1663F9E1CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YoYoTest.Library", "YoYoTest.Library\YoYoTest.Library.csproj", "{31A5D3C8-ACA5-43B6-A7B0-DBE0B31A548F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorClassStorageProject", "BlazorClassStorageProject\BlazorClassStorageProject.csproj", "{F5B9A071-FB4C-44EF-B82F-AF6FDDC39B3C}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YoYoTest.Service", "YoYoTest.Service\YoYoTest.Service.csproj", "{C904D710-0DC0-44A4-9106-5BA5312063C1}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoYoTest.ClassLibrary", "YoYoTest.ClassLibrary\YoYoTest.ClassLibrary.csproj", "{4F16EE12-9DA2-4E0D-A5A9-0AA3C51433BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YoYoTest.Application", "YoYoTest.Application\YoYoTest.Application.csproj", "{D767D1CE-16E2-4B88-A15B-A2FFA7BE5429}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,22 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{93FA4F2D-0041-4EAC-9825-7D1663F9E1CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{93FA4F2D-0041-4EAC-9825-7D1663F9E1CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{93FA4F2D-0041-4EAC-9825-7D1663F9E1CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{93FA4F2D-0041-4EAC-9825-7D1663F9E1CC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F5B9A071-FB4C-44EF-B82F-AF6FDDC39B3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F5B9A071-FB4C-44EF-B82F-AF6FDDC39B3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F5B9A071-FB4C-44EF-B82F-AF6FDDC39B3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F5B9A071-FB4C-44EF-B82F-AF6FDDC39B3C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C904D710-0DC0-44A4-9106-5BA5312063C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C904D710-0DC0-44A4-9106-5BA5312063C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C904D710-0DC0-44A4-9106-5BA5312063C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C904D710-0DC0-44A4-9106-5BA5312063C1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4F16EE12-9DA2-4E0D-A5A9-0AA3C51433BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4F16EE12-9DA2-4E0D-A5A9-0AA3C51433BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4F16EE12-9DA2-4E0D-A5A9-0AA3C51433BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4F16EE12-9DA2-4E0D-A5A9-0AA3C51433BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31A5D3C8-ACA5-43B6-A7B0-DBE0B31A548F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31A5D3C8-ACA5-43B6-A7B0-DBE0B31A548F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31A5D3C8-ACA5-43B6-A7B0-DBE0B31A548F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31A5D3C8-ACA5-43B6-A7B0-DBE0B31A548F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D767D1CE-16E2-4B88-A15B-A2FFA7BE5429}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D767D1CE-16E2-4B88-A15B-A2FFA7BE5429}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D767D1CE-16E2-4B88-A15B-A2FFA7BE5429}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D767D1CE-16E2-4B88-A15B-A2FFA7BE5429}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

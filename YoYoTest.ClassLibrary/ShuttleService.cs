@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using YoYoTest.Service;
+using YoYoTest.Service.Service;
 
 namespace YoYoTest.ClassLibrary
 {
-    public class ShuttleService
+    public class ShuttleService : IShuttleService
     {
         static ShuttleService()
         {
