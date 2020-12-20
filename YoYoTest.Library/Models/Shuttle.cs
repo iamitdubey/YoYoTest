@@ -5,8 +5,7 @@ using System.Threading.Tasks;
 
 namespace YoYoTest.Library
 {
-    // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse); 
-    public class MyArray
+    public class ShuttleLevel
     {
         public string AccumulatedShuttleDistance { get; set; }
         public string ApproxVo2Max { get; set; }
@@ -20,6 +19,6 @@ namespace YoYoTest.Library
 
     public class Root
     {
-        public List<MyArray> MyArray { get; set; }
+        public List<ShuttleLevel> MyArray { get; set; }
     }
 }

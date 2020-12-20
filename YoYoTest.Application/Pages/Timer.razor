@@ -1,11 +1,11 @@
-﻿@page "/timer"
+﻿@page "/"
 
 <h3 style="text-align:center;">YoYo Test</h3>
 @code {
     protected override async Task OnInitializedAsync()
     {
-        InitializeCandidates();
-        await service.GetData();
+        Candidates = Candidate.InitializeCandidates();
+        await _service.GetData();
 
         await base.OnInitializedAsync();
     }
@@ -42,19 +42,19 @@
 
 @if (!is_stopWatchRunning)
 {
-    <button style="text-align:center;border-radius: 50%;" value="S" @onclick="@(async () => { StopWatch(); })">S
-    <p style="text-align:center;">Level @CurrentLevel</p>
-    <p style="text-align:center;">Shuttle @Shuttle</p>
-    <p style="text-align:center;">Speed @Speed </p>
-    </button>
+    <p style="text-align:center;">
+        <button style="text-align:center;border-radius:50%;width:20%;height:130px;" value="Start" @onclick="@(async () => { StopWatch(); })">
+            Start
+        </button>
+    </p>
 }
 @if (is_stopWatchRunning)
 {
-    <button style="text-align:center;border-radius: 50%;" value="P" @onclick="@(() => { is_stopWatchRunning = false; })">
+    <p style="text-align:center;"><button style="text-align:center;border-radius: 50%;width:20%;height:130px;" @onclick="@(() => { is_stopWatchRunning = false; })">
     <p style="text-align:center;">Level @CurrentLevel</p>
     <p style="text-align:center;">Shuttle @Shuttle</p>
     <p style="text-align:center;">Speed @Speed </p>
-    </button>
+    </button></p>
 }
 
 
@@ -71,10 +71,8 @@
 <table class="table">
     <thead>
         <tr>
+            <th>Track</th>
             <th></th>
-            <th>Candidate ID</th>
-            <th>First name</th>
-            <th>Last name</th>
             <th></th>
         </tr>
     </thead>
@@ -85,31 +83,34 @@
                 <td>@candidate.CandidateId</td>
                 <td>@candidate.FirstName</td>
                 <td>@candidate.LastName</td>
-                @if (!candidate.IsWarned && !candidate.IsStopped)
+                @if (is_stopWatchRunning)
                 {
-                    <td>
-                        <a @onclick="() => TakeAction(true, candidate)" class="btn btn-primary table-btn">
-                            <i class="fas fa-info-circle"></i>Warn
-                        </a>
-                    </td>
-                    <td>
-                        <a @onclick="() => TakeAction(false, candidate)" class="btn btn-primary table-btn">
-                            <i class="fas fa-info-circle"></i>Stop
-                        </a>
-                    </td>
-                }
-                @if (candidate.IsWarned && !candidate.IsStopped)
-                {
-                    <td>
-                        <a class="btn btn-primary table-btn">
-                            <i class="fas fa-info-circle"></i>Warned
-                        </a>
-                    </td>
-                    <td>
-                        <a @onclick="() => TakeAction(false, candidate)" class="btn btn-primary table-btn">
-                            <i class="fas fa-info-circle"></i>Stop
-                        </a>
-                    </td>
+                    @if (!candidate.IsWarned && !candidate.IsStopped)
+                    {
+                        <td>
+                            <a @onclick="() => TakeAction(true, candidate)" class="btn btn-primary table-btn">
+                                <i class="fas fa-info-circle"></i>Warn
+                            </a>
+                        </td>
+                        <td>
+                            <a @onclick="() => TakeAction(false, candidate)" class="btn btn-primary table-btn">
+                                <i class="fas fa-info-circle"></i>Stop
+                            </a>
+                        </td>
+                    }
+                    @if (candidate.IsWarned && !candidate.IsStopped)
+                    {
+                        <td>
+                            <a class="btn btn-primary table-btn">
+                                <i class="fas fa-info-circle"></i>Warned
+                            </a>
+                        </td>
+                        <td>
+                            <a @onclick="() => TakeAction(false, candidate)" class="btn btn-primary table-btn">
+                                <i class="fas fa-info-circle"></i>Stop
+                            </a>
+                        </td>
+                    }
                 }
                 @if (candidate.IsStopped)
                 {
@@ -133,6 +134,7 @@
                         </td>
                     }
                 }
+
             </tr>
         }
     </tbody>

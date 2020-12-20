@@ -7,7 +7,7 @@ namespace YoYoTest.Library
 {
     public interface IShuttleService
     {
-        Task<List<MyArray>> GetData();
-        Task<List<MyArray>> GetShuttlesFor(int level, int shuttle);
+        Task<List<ShuttleLevel>> GetData();
+        Task<List<ShuttleLevel>> GetShuttlesFor(int level, int shuttle);
     }
 }

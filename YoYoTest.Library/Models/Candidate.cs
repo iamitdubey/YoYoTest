@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace YoYoTest.Application
+namespace YoYoTest.Library.Models
 {
     public class Candidate
     {
@@ -25,6 +25,5 @@ namespace YoYoTest.Application
         public string Result { get; set; }
         [JsonIgnore]
         public bool IsEditing { get; set; }
-
     }
-    }
+}
