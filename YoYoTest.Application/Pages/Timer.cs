@@ -53,7 +53,7 @@ namespace YoYoTest.Application.Pages
                 if(Candidates.All(x=> x.IsStopped == true))
                 {
                     is_stopWatchRunning = false;
-                    NextShuttle = 0;
+                    nextShuttleValue = new TimeSpan(0,0,0);
                 }
             }
         }

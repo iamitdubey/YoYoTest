@@ -11,12 +11,20 @@ namespace YoYoTest.Library
     public class ShuttleService : IShuttleService
     {
         List<ShuttleLevel> Shuttles { get; set; }
-        IReader jsonReader = new Infrastructure.JsonReader();
+        IReader _reader;
+        public ShuttleService()
+        {
+            _reader = new Infrastructure.JsonReader();
+        }
+        public ShuttleService(IReader reader)
+        {
+            _reader = reader;
+        }
         public async Task<List<ShuttleLevel>> GetData()
         {
             try
             {
-                Shuttles = await jsonReader.Read();
+                Shuttles = await _reader.Read();
                 return Shuttles;
             }
             catch (Exception)
